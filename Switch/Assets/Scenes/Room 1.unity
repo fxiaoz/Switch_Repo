@@ -264,9 +264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa904a5e60294de7a4cfcafbd66ef92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemText: {fileID: 480409252}
+  Text: {fileID: 480409252}
   dialogueBox: {fileID: 620005007}
-  itemtext: {fileID: 480409250}
+  text: {fileID: 480409250}
+  dialogue: []
+  wordspeed: 0
+  continueButton: {fileID: 0}
 --- !u!114 &312726698
 MonoBehaviour:
   m_ObjectHideFlags: 0

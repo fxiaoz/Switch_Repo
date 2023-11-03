@@ -14,6 +14,12 @@ public class InputHandler : MonoBehaviour
     public GameObject dialogueBox;
     public GameObject text;
 
+    public string[] dialogue;
+    private int index;
+    public float wordspeed;
+
+    public GameObject continueButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +32,25 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (dialogueBox.activeInHierarchy)
+            {
 
+            }
+
+            else
+            {
+                dialogueBox.SetActive(true);
+                text.SetActive(true);
+                StartCoroutine(Typing());
+            }
+        }
+
+        if (Text.text == dialogue[index])
+        {
+            continueButton.SetActive(true);
+        }
     }
 
     public void OnClick(InputAction.CallbackContext context)
@@ -40,7 +64,7 @@ public class InputHandler : MonoBehaviour
         {
             dialogueBox.SetActive(true);
             text.SetActive(true);
-            Text.text = "Has a right-handed bloody handprint at the base.";
+            Text.text = "Has a right-handed bloody handprint on the handle.";
         }
 
         if (rayHit.collider.gameObject.name == "rope")
@@ -61,5 +85,43 @@ public class InputHandler : MonoBehaviour
         {
             SceneManager.LoadScene("Room 2");
         }
+
+        if (rayHit.collider.gameObject.name == "Lulieta")
+        {
+            SceneManager.LoadScene("Lulieta");
+        }
+    }
+
+    IEnumerator Typing()
+    {
+        foreach(char letter in dialogue[index].ToCharArray())
+        {
+            Text.text += letter;
+            yield return new WaitForSeconds(wordspeed);
+        }
+    }
+
+    public void NextLine()
+    {
+        continueButton.SetActive(false);
+
+        if (index < dialogue.Length - 1)
+        {
+            index++;
+            Text.text = "";
+            StartCoroutine(Typing());
+        }
+
+        else
+        {
+            continueButton.SetActive(false);
+            dialogueBox.SetActive(false);
+            text.SetActive(false);
+        }
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("Room 2");
     }
 }
