@@ -19,6 +19,7 @@ public class InputHandler : MonoBehaviour
     public float wordspeed;
 
     public GameObject continueButton;
+    public GameObject closeButton;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class InputHandler : MonoBehaviour
 
         dialogueBox.SetActive(false);
         text.SetActive(false);
+        closeButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -64,6 +66,7 @@ public class InputHandler : MonoBehaviour
         {
             dialogueBox.SetActive(true);
             text.SetActive(true);
+            closeButton.SetActive(true);
             Text.text = "Has a right-handed bloody handprint on the handle.";
         }
 
@@ -71,6 +74,7 @@ public class InputHandler : MonoBehaviour
         {
             dialogueBox.SetActive(true);
             text.SetActive(true);
+            closeButton.SetActive(true);
             Text.text = "Looks like it was cut with something sharp.";
         }
 
@@ -78,6 +82,7 @@ public class InputHandler : MonoBehaviour
         {
             dialogueBox.SetActive(true);
             text.SetActive(true);
+            closeButton.SetActive(true);
             Text.text = "An empty mug with traces of coffee.";
         }
 
@@ -123,5 +128,12 @@ public class InputHandler : MonoBehaviour
     public void Back()
     {
         SceneManager.LoadScene("Room 2");
+    }
+
+    public void Close()
+    {
+        dialogueBox.SetActive(false);
+        text.SetActive(false);
+        closeButton.SetActive(false);
     }
 }
